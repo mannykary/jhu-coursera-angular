@@ -1,0 +1,20 @@
+.green {
+    color: green;
+}
+.red {
+    color: red;
+}
+.valid {
+    border: 2px solid green;
+}
+.error {
+    border: 2px solid red;
+}
+.note {
+    color: red;
+    font-style: italic;
+}
+.message {
+    font-size: 1.3em;
+    font-weight: bold;
+}
