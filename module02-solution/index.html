@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" ng-app="ShoppingListCheckOff">
+  <head>
+    <title>Shopping List Check Off</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <style>
+      .emptyMessage {
+        font-weight: bold;
+        color: red;
+        font-size: 1.2em;
+      }
+      li {
+        margin-bottom: 7px;
+        font-size: 1.2em;
+      }
+      li > button {
+        margin-left: 6px;
+      }
+      button > span {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+
+  <div class="container">
+    <h1>Shopping List Check Off</h1>
+
+    <div class="row">
+
+      <!-- To Buy List -->
+      <div class="col-md-6" ng-controller="ToBuyShoppingController as toBuyCtrl">
+        <div class="form-group">
+          <input id="addItem" type="text"
+                 placeholder="input quantity and item to buy (e.g. 5 cookies)"
+                 class="form-control" ng-model="toBuyCtrl.itemToAdd" ng-class="style.validation">
+          <button class="btn btn-default" ng-click="toBuyCtrl.addItem()">
+            <span class="glyphicon glyphicon-ok"></span> Add
+          </button>
+        </div>
+
+
+        <h2>To Buy:</h2>
+        <ul>
+          <li ng-repeat="item in toBuyCtrl.toBuyItems">
+            Buy {{ item.quantity }} {{ item.name }}
+            <button class="btn btn-default" ng-click="toBuyCtrl.buyItem(item)">
+              <span class="glyphicon glyphicon-ok"></span> Bought
+            </button>
+          </li>
+        </ul>
+        <div class="emptyMessage" ng-if="toBuyCtrl.everythingIsBought()">
+          Everything is bought!
+        </div>
+        <div class="emptyMessage" ng-if="toBuyCtrl.shoppingListEmpty()">
+          Shopping list is empty. Add an item to the list!
+        </div>
+      </div>
+
+      <!-- Already Bought List -->
+      <div class="col-md-6" ng-controller="AlreadyBoughtShoppingController as alreadyBoughtCtrl">
+        <h2>Already Bought:</h2>
+        <ul>
+          <!-- Use track by $index to avoid ngRepeat:dupes error. -->
+          <!-- See https://docs.angularjs.org/error/ngRepeat/dupes -->
+          <li ng-repeat="item in alreadyBoughtCtrl.alreadyBoughtItems track by $index">
+            Bought {{ item.quantity }} {{ item.name }}
+          </li>
+        </ul>
+        <div class="emptyMessage" ng-if="alreadyBoughtCtrl.alreadyBoughtItems.length === 0">Nothing bought yet.</div>
+      </div>
+    </div>
+  </div>
+
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="app.js"></script>
+</html>
