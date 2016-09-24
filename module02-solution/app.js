@@ -52,7 +52,13 @@
   function ShoppingListCheckOffService() {
     var service = this;
 
-    service.toBuyItems = [];
+    service.toBuyItems = [
+      { name: 'cookies', quantity: 10 },
+      { name: 'bags of chips', quantity: 20 },
+      { name: 'pizzas', quantity: 15 },
+      { name: 'sodas', quantity: 7 },
+      { name: 'avacodos', quantity: 5 }
+    ];
     service.alreadyBoughtItems = [];
 
     service.addItemToBuy = function (name, quantity) {
