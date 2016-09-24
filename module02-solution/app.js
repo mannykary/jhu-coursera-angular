@@ -10,17 +10,19 @@
   function ToBuyShoppingController(ShoppingListCheckOffService) {
     var toBuyCtrl = this;
     toBuyCtrl.itemToAdd = '';
+    toBuyCtrl.hasValidationError = false;
 
     toBuyCtrl.addItem = function () {
-      // TODO add error checking.
       var quantity = toBuyCtrl.itemToAdd.replace(/(^\d+)(.+$)/i, '$1'),
           name = toBuyCtrl.itemToAdd.replace(quantity, '');
 
-      //var itemToAddArray = toBuyCtrl.itemToAdd.split(' ');
-      // var name = itemToAddArray[1],
-      //     quantity = itemToAddArray[0];
-      ShoppingListCheckOffService.addItemToBuy(name, quantity);
-      toBuyCtrl.itemToAdd = '';
+      if (!quantity || !name) {
+        toBuyCtrl.hasValidationError = true;
+      } else {
+        ShoppingListCheckOffService.addItemToBuy(name, quantity);
+        toBuyCtrl.itemToAdd = '';
+        toBuyCtrl.hasValidationError = false;
+      }
     };
 
     toBuyCtrl.buyItem = function (item) {
@@ -65,8 +67,6 @@
         var item = service.toBuyItems[i];
         if (item.name === itemToBuy.name) {
           service.toBuyItems.splice(item, 1);
-          console.log(service.alreadyBoughtItems);
-          console.log(item);
           service.alreadyBoughtItems.push(item);
           break;
         }

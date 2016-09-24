@@ -38,6 +38,7 @@
           <button class="btn btn-default" ng-click="toBuyCtrl.addItem()">
             <span class="glyphicon glyphicon-ok"></span> Add
           </button>
+          <div class="emptyMessage" ng-if="toBuyCtrl.hasValidationError">Please enter a valid quantity and item!</div>
         </div>
 
 
