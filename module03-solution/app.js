@@ -39,10 +39,12 @@
         var data = result.data.menu_items;
         var foundItems = [];
 
-        for (var i = 0; i < data.length; i++) {
-          var item = data[i];
-          if (item.description.toLowerCase().includes(searchTerm.toLowerCase())) {
-            foundItems.push(item);
+        if (searchTerm) {
+          for (var i = 0; i < data.length; i++) {
+            var item = data[i];
+            if (item.description.toLowerCase().includes(searchTerm.toLowerCase())) {
+              foundItems.push(item);
+            }
           }
         }
 
