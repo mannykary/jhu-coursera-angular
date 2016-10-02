@@ -30,7 +30,7 @@
     };
 
     toBuyCtrl.toBuyItems = ShoppingListCheckOffService.toBuyItems;
-    toBuyCtrl.alreadyBoughtItems = ShoppingListCheckOffService.alreadyBoughtItems;
+    toBuyCtrl.alreadyBoughtItems = ShoppingListCheckOffService.alreadyBoughtItems;1
 
     toBuyCtrl.everythingIsBought = function () {
       return toBuyCtrl.toBuyItems.length === 0 && toBuyCtrl.alreadyBoughtItems.length > 0;
