@@ -40,7 +40,7 @@
 
         for (var i = 0; i < data.length; i++) {
           var item = data[i];
-          if (item.description.includes(searchTerm)) {
+          if (item.description.toLowerCase().includes(searchTerm.toLowerCase())) {
             foundItems.push(item);
           }
         }
