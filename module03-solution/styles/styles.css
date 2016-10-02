@@ -67,6 +67,4 @@ input[type="text"] {
 }
 #nothingFound {
   clear: both;
-  color: red;
-  font-weight: bold;
 }
