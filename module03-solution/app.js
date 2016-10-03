@@ -30,13 +30,25 @@
   MenuSearchService.$inject = ['$http', 'API_BASE_PATH'];
   function MenuSearchService($http, API_BASE_PATH) {
     var service = this;
+    var promise;
+
+    var getAllItems = function() {
+      if (!promise) {
+        console.log("No cached results found. Fetching from server.");
+        promise = $http({
+          method: 'GET',
+          url: API_BASE_PATH + '/menu_items.json'
+        }).then(function (result) {
+          return result.data.menu_items;
+        });
+      } else {
+        console.log("Using cached results.")
+      }
+      return promise;
+    };
 
     service.getMatchedMenuItems = function (searchTerm) {
-      return $http({
-        method: 'GET',
-        url: API_BASE_PATH + '/menu_items.json'
-      }).then(function (result) {
-        var data = result.data.menu_items;
+      return getAllItems().then(function (data) {
         var foundItems = [];
 
         if (searchTerm) {
