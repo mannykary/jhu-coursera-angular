@@ -1,0 +1,15 @@
+h1 {
+  margin-bottom: 30px;
+}
+.name {
+  width: 25%;
+}
+.short-name {
+  width: 10%
+}
+.description {
+  width: 50%;
+}
+.price {
+  width: 15%;
+}

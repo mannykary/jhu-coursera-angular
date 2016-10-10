@@ -1,0 +1,20 @@
+<table class="table">
+  <tr>
+    <th class="short-name">Short Name</th>
+    <th class="name">Name</th>
+    <th class="description">Description</th>
+    <th class="price">Price</th>
+  </tr>
+  <tr ng-repeat="item in $ctrl.items">
+    <td>{{ item.short_name }}</td>
+    <td>{{ item.name }}</td>
+    <td>{{ item.description }}</td>
+    <td>
+      {{ item.price_small | currency }}
+      <span ng-if="item.small_portion_name">({{ item.small_portion_name }})</span>
+      <br>
+      {{ item.price_large | currency }}
+      <span ng-if="item.large_portion_name">({{ item.large_portion_name }})</span>
+    </td>
+  </tr>
+</table>
